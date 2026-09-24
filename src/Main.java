@@ -1,78 +1,153 @@
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
-class  Employee {
-    String name;
-    int salary;
+    public class Main {
+        public static void main(String[] args) {
+            ArrayList<Employee> employees = new ArrayList<>();
 
-    Employee(String name,int salary) {
-        this.name = name;
-        this.salary = salary;
-    }
-    int getSalary() {
-        return salary;
-    }
-
-
-    void showInfo() {
-        System.out.println("Сотрудник: " + name);
-    }
-
-    void work() {
-        System.out.println("Сотрудник работает");
-    }
-
-}
-class Developer extends Employee {
-    Developer(String name, int salary) {
-        super(name, salary);
-    }
-
-    @Override
-    void showInfo() {
-        System.out.println("Разработчик: " + name);
-    }
-
-    @Override
-    void work() {
-        System.out.println(name + " пишет код");
-    }
-}
+            employees.add(new Employee("Alex", 50000));
+            employees.add(new Employee("Kate", 70000));
+            employees.add(new Employee("Mike", 60000));
+            employees.add(new Employee("Anna", 80000));
 
 
-class Manager extends Employee {
-    Manager(String name,int salary) {
-        super(name,salary);
-    }
+            ArrayList<String> highPaid = getHighPaidEmployees(employees, 60000);
+            System.out.println(highPaid);
 
-    @Override
-    void showInfo() {
-        System.out.println("Менеджер: " + name);
-    }
+            int total = getTotalSalary(employees);
+            System.out.println(total);
 
-    @Override
-    void work() {
-        System.out.println(name + " управляет командой");
-    }
-}
+            Employee highest = getHighestPaidEmployee(employees);
+            System.out.println(highest.name + " " + highest.salary);
+
+            Employee lowest = getLowestPaidEmployee(employees);
+            System.out.println(lowest.name + " " + lowest.salary);
+
+            HashMap<String, Integer> salaryMap = createSalaryMap(employees);
+            System.out.println(salaryMap);
+
+            HashSet<String> uniqueNames = getUniqueNames(employees);
+            System.out.println(uniqueNames);
 
 
-public class Main {
-    public static void main(String[] args) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        employees.add(new Developer("Alex",120000));
-        employees.add(new Manager("Kate",150000));
-        employees.add(new Developer("Max",130000));
-        employees.add(new Manager("Anna",160000));
-
-        for (Employee employee : employees) {
-            employee.showInfo();
-           employee.work();
-           System.out.println("Зарплата: ");
-           System.out.println(employee.getSalary());
+            try{
+                Employee employee = new Employee("Alex", -50000);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
         }
+
+
+        public static ArrayList<String> getHighPaidEmployees(ArrayList<Employee> employees, int limit) {
+            ArrayList<String> result = new ArrayList<>();
+
+            for (Employee employee : employees) {
+                if (employee.salary > limit) {
+                    result.add(employee.name);
+                }
+            }
+            return result;
+        }
+
+
+        public static int getTotalSalary(ArrayList<Employee> employees) {
+            int sum = 0;
+            for (Employee employee : employees) {
+                sum = sum + employee.salary;
+
+
+            }
+            return sum;
+        }
+
+
+        public static Employee getHighestPaidEmployee(ArrayList<Employee> employees) {
+
+            Employee highest = employees.get(0);
+            for (Employee employee : employees) {
+                if (employee.salary > highest.salary) {
+                    highest = employee;
+
+                }
+
+            }
+            return highest;
+        }
+
+        public static Employee getLowestPaidEmployee(ArrayList<Employee> employees) {
+            Employee lowest = employees.get(0);
+            for (Employee employee : employees) {
+                if (employee.salary < lowest.salary) {
+                    lowest = employee;
+
+                }
+            }
+            return lowest;
+        }
+
+        public static HashMap<String, Integer> createSalaryMap(ArrayList<Employee> employees) {
+            HashMap<String, Integer> salaryMap = new HashMap<>();
+            for (Employee employee : employees) {
+                salaryMap.put(employee.name, employee.salary);
+
+
+            }
+
+            return salaryMap;
+        }
+
+        public static HashSet<String> getUniqueNames(ArrayList<Employee> employees) {
+            HashSet<String> unique = new HashSet<>();
+            for (Employee employee : employees) {
+                unique.add(employee.name);
+
+            }
+            return unique;
+        }
+
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
