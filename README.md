@@ -1,39 +1,17 @@
 Employee Salary Manager
 
-A Java console application for practicing collections, methods, OOP basics, and exception handling.
+A simple Java console application for managing employee salary data.
 
-Features
+The project was created to practice core Java concepts and build a small application from scratch using OOP, collections, methods, and exception handling.
 
-
-Store employees in an ArrayList
-Find employees with a salary above a specified limit
-Calculate total salary
-Find the highest-paid employee
-Find the lowest-paid employee
-Create a HashMap with employee names and salaries
-Get unique employee names with HashSet
-Handle negative salaries with IllegalArgumentException
-
-
-Technologies
-Java 21
-IntelliJ IDEA
-ArrayList
-HashMap
-HashSet
-OOP basics
-Exception handling
-
-
-Example Output
-[Kate, Anna]
-260000
-Anna 80000
-Alex 50000
-{...}
-[...]
-Salary cannot be negative
-
+What the project can do
+Store and manage employees
+Find employees above a selected salary
+Calculate the total salary
+Find the highest- and lowest-paid employees
+Create a salary map using HashMap
+Get unique employee names using HashSet
+Validate salary values and handle invalid input
 
 Purpose
 
